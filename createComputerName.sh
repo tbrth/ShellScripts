@@ -12,7 +12,6 @@
 
 # ********** End of user variables ********** #
 
-
 ##### Last 5 of MAC Address
 macAddress=`ifconfig en0 | grep ether | awk '{print toupper ($2)}' | sed s'/://g' | tail -c 6`
 
@@ -42,59 +41,74 @@ esac
 macComputerName="$compPrefix-$macType-$macAddress"
 serialComputerName="$compPrefix-$macType-$serialNumber"
 
-
 ##### Print out last 5 of MAC address and Serial Number of computer
-echo " "
-echo "Last 5 of MAC Address: $macAddress"
-echo "Last 5 of Serial Number: $serialNumber"
-echo " "
+echo -e "\nLast 5 of MAC Address: $macAddress"
+echo -e "Last 5 of Serial Number: $serialNumber"
 
 ##### Print out each version of the computer name
-echo " "
-echo MAC Address Computer Name: $macComputerName
-echo Serial Number Computer Name: $serialComputerName
-echo " "
+echo -e "\nComputer Name (MAC Address): $macComputerName"
+echo -e "Computer Name (Serial Number): $serialComputerName"
 
 #### Prompt to make changes to LocalHostName, ComputerName, and HostName
-echo "Which computer name would you like to apply?"
-select input in "$macComputerName (Last 5 of MAC Address)" "$serialComputerName (Last 5 of Serial Number)" "Do not apply any changes";
+echo -e "\nWhich computer name would you like to apply?"
+select input in "$macComputerName (Last 5 of MAC Address)" "$serialComputerName (Last 5 of Serial Number)" "Manually enter computer name" "Quit";
 do
   case $input in
     "$macComputerName (Last 5 of MAC Address)" )
         ##### Set LocalHostName, ComputerName, and HostName via scutil
 
+        echo -e "\nSetting LocalHostName: $macComputerName"
         # (DISABLED) scutil --set LocalHostName "$macComputerName"
-        echo "Set LocalHostName: $macComputerName"
-        echo " "
+        echo -e "Done...\n"
 
+        echo -e "Setting ComputerName: $macComputerName"
         # (DISABLED) scutil --set ComputerName "$macComputerName"
-        echo "Set ComputerName: $macComputerName"
-        echo " "
+        echo -e "Done...\n"
 
+        echo -e "Setting HostName: $macComputerName.local"
         # (DISABLED) scutil --set HostName "$macComputerName.local"
-        echo "Set HostName: $macComputerName.local"
-        echo " "
+        echo -e "Done...\n"
+
         break;;
 
     "$serialComputerName (Last 5 of Serial Number)" )
         ##### Set LocalHostName, ComputerName, and HostName via scutil
 
+        echo -e "\nSet LocalHostName: $serialComputerName"
         # (DISABLED) scutil --set LocalHostName "$macComputerName"
-        echo "Set LocalHostName: $serialComputerName"
-        echo " "
+        echo -e "Done...\n"
 
+        echo -e "Set ComputerName: $serialComputerName"
         # (DISABLE) scutil --set ComputerName "$macComputerName"
-        echo "Set ComputerName: $serialComputerName"
-        echo " "
+        echo -e "Done...\n"
 
+        echo -e "Set HostName: $serialComputerName.local"
         # (DISABLED) scutil --set HostName "$macComputerName.local"
-        echo "Set HostName: $serialComputerName.local"
-        echo " "
+        echo -e "Done...\n"
+
         break;;
 
-    "Do not apply any changes" ) echo "Exiting... Computer name has not been changed."
+    "Manually enter in computer name" )
+        ##### Prompt user to enter in computer name
+        read -p "ComputerName: " customComputerName
+
+        echo -e "\nSetting LocalHostName: $customComputerName"
+        # (DISABLED) scutil --set LocalHostName "$customComputerName"
+        echo -e "Done...\n"
+
+        echo -e "Setting ComputerName: $customComputerName"
+        # (DISABLE) scutil --set ComputerName "$customComputerName"
+        echo -e "Done...\n"
+
+        echo -e "Setting HostName: $customComputerName.local"
+        # (DISABLED) scutil --set HostName "$customComputerName.local"
+        echo -e "Done...\n"
+
+        break;;
+
+    "Quit" ) echo -e "\nExiting... No changes have been changed.\n"
         break;;
   esac
 done
 
-##### EOF
+##### End of script
