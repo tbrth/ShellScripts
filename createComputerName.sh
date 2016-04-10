@@ -63,15 +63,15 @@ do
     "$macComputerName (Last 5 of MAC Address)" )
         ##### Set LocalHostName, ComputerName, and HostName via scutil
 
-        #scutil --set LocalHostName "$macComputerName"
+        # (DISABLED) scutil --set LocalHostName "$macComputerName"
         echo "Set LocalHostName: $macComputerName"
         echo " "
 
-        #scutil --set ComputerName "$macComputerName"
+        # (DISABLED) scutil --set ComputerName "$macComputerName"
         echo "Set ComputerName: $macComputerName"
         echo " "
 
-        #scutil --set HostName "$macComputerName.local"
+        # (DISABLED) scutil --set HostName "$macComputerName.local"
         echo "Set HostName: $macComputerName.local"
         echo " "
         break;;
