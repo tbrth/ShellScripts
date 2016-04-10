@@ -79,15 +79,15 @@ do
     "$serialComputerName (Last 5 of Serial Number)" )
         ##### Set LocalHostName, ComputerName, and HostName via scutil
 
-        #scutil --set LocalHostName "$macComputerName"
+        # (DISABLED) scutil --set LocalHostName "$macComputerName"
         echo "Set LocalHostName: $serialComputerName"
         echo " "
 
-        #scutil --set ComputerName "$macComputerName"
+        # (DISABLE) scutil --set ComputerName "$macComputerName"
         echo "Set ComputerName: $serialComputerName"
         echo " "
 
-        #scutil --set HostName "$macComputerName.local"
+        # (DISABLED) scutil --set HostName "$macComputerName.local"
         echo "Set HostName: $serialComputerName.local"
         echo " "
         break;;
