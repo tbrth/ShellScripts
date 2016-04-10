@@ -1,8 +1,8 @@
 #!/bin/bash
 
-#   Script that determines the type of Mac and creates
-#   the appropriate computer name based using the
-#   following naming scheme: PREFIX-MACTYPE-????? (Last 5 of MAC or Serial Number)
+#   Script that determines the type of Mac it is and creates
+#   the appropriate computer name using the following naming scheme:
+#   PREFIX-MACTYPE-????? (Last 5 of MAC or Serial Number)
 #   Tim Barth - April 10, 2016
 
 # ********** User variables ********** #
